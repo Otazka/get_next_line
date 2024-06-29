@@ -1,17 +1,16 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-char *read_file(int fd, char *stash)
+char    *read_file(int fd, char *stash)
 {
-    char *buff;
+    char    *buff;
     int readed;
 
     readed = 1;
-    
-    while (!newline_exist(stash) && readed !=0)
+    while (!new_line_exist(stash) && readed ! = 0)
     {
         buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
         if (!buff)
-            return(NULL);
+            return (NULL);
         readed = (int)read(fd, buff, BUFFER_SIZE);
         if ((!stash && readed == 0) || readed == -1)
             return (free(buff), NULL);
@@ -21,10 +20,10 @@ char *read_file(int fd, char *stash)
     return (stash);
 }
 
-char *ft_get_line(char *stash)
+char    *ft_get_line(char *stash)
 {
-    char *line;
-    int         i;
+    char    *line;
+    int     i;
 
     if (!stash)
         return (NULL);
@@ -48,13 +47,13 @@ char *ft_get_line(char *stash)
 
 char    *ft_get_rest(char *stash, char *line)
 {
-    char *rest;
+    char    *rest;
     int i;
     int j;
 
     i = ft_strlen(line);
     if (!stash[i])
-        return (free(stash), NULL);
+        return(free(stash), NULL);
     j = 0;
     while (stash[i++])
         j++;
@@ -64,29 +63,29 @@ char    *ft_get_rest(char *stash, char *line)
     i = ft_strlen(line);
     j = 0;
     while (stash[i])
-        rest[j++] = stash[i++];
+        rest[j++] = line[i++];
     rest[j] = '\0';
-    return(free(stash), rest);
+    return(free(stash), rest);        
 }
 
-char    *get_next_line(int fd)
+char    *ft_get_next_line(int fd)
 {
-    static char *stash;
+    static char *stash[1024];
     char    *line;
     char    *temp;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
+    if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
         return (NULL);
-    temp = read_file(fd, stash);
+    temp = read_file(fd, stash[fd]);
     if (!temp)
     {
-        if (stash)
-            free(stash);
-        stash = NULL;
-        retun (NULL);
+        if (stash[fd])
+            free(stash[fd]);
+        stash[fd] = NULL;
+        return (NULL);
     }
-    stash = temp;
-    line = ft_get_line(stash);
-    stash = ft_get_rest(stash, line);
+    stash[fd] = temp;
+    line = ft_get_line(stash[fd]);
+    stash[fd] = ft_get_rest(stash[fd], rest);
     return (line);
 }
