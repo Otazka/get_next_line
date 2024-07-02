@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:29:38 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/06/29 13:30:17 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/07/01 12:51:59 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 8
+#  define BUFFER_SIZE 8
 # endif
 
 size_t	ft_strlen(char *str);

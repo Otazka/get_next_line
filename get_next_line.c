@@ -6,7 +6,7 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:21:07 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/06/29 13:22:21 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/07/01 12:54:10 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 		if (stash)
 			free(stash);
 		stash = NULL;
-		retun (NULL);
+		return (NULL);
 	}
 	stash = temp;
 	line = ft_get_line(stash);

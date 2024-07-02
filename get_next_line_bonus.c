@@ -6,11 +6,13 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:31:26 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/06/29 13:39:47 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/07/01 12:49:19 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *stash)
 {
@@ -18,7 +20,7 @@ char	*read_file(int fd, char *stash)
 	int		readed;
 
 	readed = 1;
-	while (!new_line_exist(stash) && readed != 0)
+	while (!newline_exist(stash) && readed != 0)
 	{
 		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buff)
@@ -75,12 +77,12 @@ char	*ft_get_rest(char *stash, char *line)
 	i = ft_strlen(line);
 	j = 0;
 	while (stash[i])
-		rest[j++] = line[i++];
+		rest[j++] = stash[i++];
 	rest[j] = '\0';
 	return (free(stash), rest);
 }
 
-char	*ft_get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*stash[1024];
 	char		*line;
@@ -98,7 +100,6 @@ char	*ft_get_next_line(int fd)
 	}
 	stash[fd] = temp;
 	line = ft_get_line(stash[fd]);
-	stash[fd] = ft_get_rest(stash[fd], rest);
+	stash[fd] = ft_get_rest(stash[fd], line);
 	return (line);
 }
-

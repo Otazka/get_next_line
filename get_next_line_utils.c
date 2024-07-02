@@ -6,11 +6,10 @@
 /*   By: elenasurovtseva <elenasurovtseva@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:59:29 by elenasurovt       #+#    #+#             */
-/*   Updated: 2024/06/29 14:01:00 by elenasurovt      ###   ########.fr       */
+/*   Updated: 2024/07/01 12:50:27 by elenasurovt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "get_next_line_bonus.h"
 
 char	*newline_exist(char *str)
@@ -58,11 +57,11 @@ char	*ft_strjoin(char *stash, char *buff)
 	j = -1;
 	while (buff[++j])
 		temp[i++] = buff[j];
-	temp[i] = '/0';
-	return (free(stash), free(buff). temp);
+	temp[i] = '\0';
+	return (free(stash), free(buff), temp);
 }
 
-void	ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	size_t	i;
 	char	*ptr;
